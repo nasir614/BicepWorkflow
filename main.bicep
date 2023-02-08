@@ -11,6 +11,6 @@ resource TestStorage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
    
   }
 tags:{
-  tagName:'tagValue'
+  RqTag:'Rq'
 }
 }

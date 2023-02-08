@@ -25,10 +25,9 @@ resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
     name: storageSKU
   }
   kind: 'StorageV2'
-#disable-next-line BCP037
-  properties: { supportsHttpsTrafficOnly: true, tags: {
-      test: 'tagValue1'
-    } }
+  properties: {
+    supportsHttpsTrafficOnly: true
+  }
 }
 
 output storageEndpoint object = stg.properties.primaryEndpoints

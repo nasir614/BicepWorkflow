@@ -26,9 +26,9 @@ jobs:
         uses: azure/arm-deploy@v1
         with:
           scope: resourcegroup
-          resourceGroupName: BicepHackathonTest
+          resourceGroupName: Labrrg
           deploymentMode: incremental
-          template: ./infra/frontEnd.bicep
+          template: ./main.bicep
           failOnStdErr: true
 
       

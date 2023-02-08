@@ -23,7 +23,7 @@ jobs:
 
       # Deploy Front end Bicep File
       - name: deploy
-        uses: azure/arm-deploy@v1
+        uses: azure/arm-deploy@v1.0.4
         with:
           scope: resourcegroup
           resourceGroupName: Labrrg

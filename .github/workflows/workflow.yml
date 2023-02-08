@@ -12,13 +12,29 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+jobs: 
+  build: 
+    # Build front end environment
+    name: build front end
+    runs-on: ubuntu-latest
+    steps: 
+      # Checkout code
+      - uses: actions/checkout@main
 
-      # Deploy Bicep file
-    - name: deploy
-      uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-        resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./azureinfra.bicep
-        parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
-        failOnStdErr: false
+      # Log into Azure
+        # This describes how to generate and store azure credentials: https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#use-the-azure-login-action-with-a-service-principal-secret
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Deploy Front end Bicep File
+      - name: deploy
+        uses: azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          resourceGroupName: Labrrg
+          deploymentMode: incremental
+          template: /azureinfra.bicep
+          failOnStdErr: False
+          parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
+      
